@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 6</title>
+  <style>
+    /* Контейнер для центрирования */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Скрываем стандартный чекбокс */
+    .toggle-input {
+      display: none;
+    }
+
+    /* Стили для самого тумблера */
+    .toggle-label {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      background-color: #4682b4;
+      border-radius: 34px;
+      transition: background-color 0.2s;
+      cursor: pointer;
+    }
+
+    /* Кружок внутри тумблера */
+    .toggle-label:after {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      left: 5px;
+      top: 5px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.2s;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Когда тумблер включен */
+    .toggle-input:checked + .toggle-label {
+      background-color: #40e0d0;
+    }
+
+    /* Двигаем кружок вправо при включении */
+    .toggle-input:checked + .toggle-label:after {
+      transform: translateX(26px);
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <input type="checkbox" id="toggle" class="toggle-input">
+  <label for="toggle" class="toggle-label"></label>
+</div>
+</body>
+</html>

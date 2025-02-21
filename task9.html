@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 9</title>
+    <script>
+        function evaluateExpression(expression) {
+            try {
+                expression = expression.replace(/\^/g, '**')
+                let result = new Function('return ' + expression)();
+                return result;
+            } catch (e) {
+                return 'Ошибка в выражении';
+            }
+        }
+
+        function calculate() {
+            let input = document.getElementById('expression').value;
+            let output = evaluateExpression(input);
+            document.getElementById('result').innerText = "Результат: " + output;
+        }
+    </script>
+</head>
+<body>
+<h2>Калькулятор выражений</h2>
+<input type="text" name="expression" id="expression" placeholder="Введите выражение">
+<button onclick="calculate()">Вычислить</button>
+<p id="result">Результат: </p>
+</body>
+</html>

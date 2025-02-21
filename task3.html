@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 3</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111;
+            perspective: 800px;
+        }
+        .scene {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 10s infinite linear;
+        }
+        @keyframes rotate {
+            from { transform: rotateX(0deg) rotateY(0deg) }
+            to { transform: rotateX(360deg) rotateY(360deg) }
+        }
+        .face {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: royalblue;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+        .cell {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-sizing: border-box;
+        }
+        .front { transform: translateZ(100px); }
+        .back { transform: rotateY(180deg) translateZ(100px); }
+        .left { transform: rotateY(-90deg) translateZ(100px); }
+        .right { transform: rotateY(90deg) translateZ(100px); }
+        .top { transform: rotateX(90deg) translateZ(100px); }
+        .bottom { transform: rotateX(-90deg) translateZ(100px); }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="face front"> <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div> </div>
+        <div class="face back"> <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div> </div>
+        <div class="face left"> <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div> </div>
+        <div class="face right"> <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div> </div>
+        <div class="face top"> <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div> </div>
+        <div class="face bottom"> <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div> </div>
+    </div>
+</body>
+</html>

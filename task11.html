@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 11</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+            cursor: crosshair;
+        }
+        .controls {
+            margin: 10px 0;
+        }
+        .color-btn {
+            width: 30px;
+            height: 30px;
+            border: 2px solid #000;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .color-btn.selected {
+            border-color: #ff0;
+        }
+    </style>
+</head>
+<body>
+<div class="controls">
+    <div class="color-btn" style="background-color: black" onclick="setColor('black')"></div>
+    <div class="color-btn" style="background-color: red" onclick="setColor('red')"></div>
+    <div class="color-btn" style="background-color: blue" onclick="setColor('blue')"></div>
+</div>
+<canvas id="drawingCanvas" width="800" height="600"></canvas>
+
+<script>
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+    let isDrawing = false;
+    let currentColor = 'black';
+    let lastX = 0;
+    let lastY = 0;
+
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+
+    function setColor(color) {
+        currentColor = color;
+        ctx.strokeStyle = color;
+
+        // Update button highlighting
+        document.querySelectorAll('.color-btn').forEach(btn => {
+            btn.classList.remove('selected');
+            if (btn.style.backgroundColor === color) {
+                btn.classList.add('selected');
+            }
+        });
+    }
+
+    setColor('black');
+
+    canvas.addEventListener('mousedown', (e) => {
+        isDrawing = true;
+        [lastX, lastY] = [e.offsetX, e.offsetY];
+    });
+
+    canvas.addEventListener('mousemove', (e) => {
+        if (isDrawing) {
+            draw(e.offsetX, e.offsetY);
+        }
+    });
+
+    canvas.addEventListener('mouseup', () => {
+        isDrawing = false;
+    });
+
+    canvas.addEventListener('mouseout', () => {
+        isDrawing = false;
+    });
+
+    function draw(x, y) {
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        [lastX, lastY] = [x, y];
+    }
+</script>
+</body>
+</html>

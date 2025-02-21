@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 5</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            display: grid;
+            grid-template-areas:
+                "header"
+                "content"
+                "sidebar"
+                "footer";
+            gap: 20px;
+        }
+        header, .content, .sidebar, footer {
+            padding: 20px;
+            background: #f4f4f4;
+        }
+        header {
+            grid-area: header;
+            text-align: center;
+        }
+        .content {
+            grid-area: content;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .post {
+            width: 200px;
+            background: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .sidebar {
+            grid-area: sidebar;
+        }
+        footer {
+            grid-area: footer;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .container {
+                grid-template-areas:
+                    "header header"
+                    "content sidebar"
+                    "footer footer";
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+        @media (min-width: 992px) {
+            .container {
+                grid-template-areas:
+                    "header header header"
+                    "content content sidebar"
+                    "footer footer footer";
+                grid-template-columns: 2fr 2fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>Шапка</header>
+    <section class="content">
+        <div class="post">Пост 1</div>
+        <div class="post">Пост 2</div>
+        <div class="post">Пост 3</div>
+        <div class="post">Пост 4</div>
+    </section>
+    <aside class="sidebar">Боковая панель</aside>
+    <footer>Футер</footer>
+</div>
+</body>
+</html>

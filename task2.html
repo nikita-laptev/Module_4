@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <form>
+    <div class="form-group">
+      <label for="text">Текстовое поле</label>
+      <input for="text" id="text" name="text">
+    </div>
+
+    <div class="form-group">
+      <button type="button">Кнопка</button>
+    </div>
+
+    <div class="form-group">
+      <label for="dropdown">Выпадающий список:</label>
+      <select id="dropdown" name="dropdown">
+        <option>Опция 1</option>
+        <option>Опция 2</option>
+        <option>Опция 3</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <input type="checkbox" name="checkbox" id="checkbox"> <label for="checkbox">Чекбокс</label>
+    </div>
+
+    <div class="form-group">
+      <input type="radio" name="radio" id="radio1"> <label for="radio1">Радиокнопка 1</label>
+      <input type="radio" name="radio" id="radio2"> <label for="radio2">Радиокнопка 2</label>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Выпадающий календарь:</label>
+      <input type="date" name="date" id="date">
+    </div>
+
+    <div class="form-group">
+      <label for="range">Диапазон:</label>
+      <input type="range" name="range" id="range" value="50" max="100">
+    </div>
+
+    <div class="form-group">
+      <label for="progress">Прогресс-бар:</label>
+      <progress id="progress" value="50" max="100"></progress>
+    </div>
+  </form>
+</body>
+</html>

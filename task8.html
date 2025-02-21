@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task 8</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #keyboard {
+      display: grid;
+      grid-template-columns: repeat(10, 40px);
+      gap: 5px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    button {
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #inputField {
+      width: 300px;
+      height: 40px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<input type="text" id="inputField" readonly>
+<div id="keyboard"></div>
+<script>
+  const keys = "1234567890йцукенгшщзхъфывапролджэячсмитьбю".split("");
+  let shift = false;const keyboard = document.getElementById("keyboard");
+  const inputField = document.getElementById("inputField");
+
+  function addCharacter(char) {
+    inputField.value += shift ? char.toUpperCase() : char;
+  }
+
+  function toggleShift() {
+    shift = !shift;
+  }
+
+  keys.forEach(char => {
+    const button = document.createElement("button");
+    button.innerText = char;
+    button.onclick = () => addCharacter(char);
+    keyboard.appendChild(button);
+  });
+
+  const shiftButton = document.createElement("button");
+  shiftButton.innerText = "Shift";
+  shiftButton.onclick = toggleShift;
+  keyboard.appendChild(shiftButton);
+</script>
+</body>
+</html>
