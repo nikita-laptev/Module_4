@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 1</title>
-  <style>
-    img {
-      filter: grayscale(100%) blur(5px);
-      width: 100%;
-      max-width: 600px;
-      display: block;
-      margin: 20px auto;
-    }
-  </style>
+    <style>
+        .processed-image {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            width: 50%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-<img src="./img/cat.jpg" alt="cat">
+    <img class="processed-image" src="./img/cat.jpg">
 </body>
 </html>
