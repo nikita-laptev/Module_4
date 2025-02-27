@@ -1,62 +1,160 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Task 8</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin-top: 50px;
-    }
-    #keyboard {
-      display: grid;
-      grid-template-columns: repeat(10, 40px);
-      gap: 5px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-    button {
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    #inputField {
-      width: 300px;
-      height: 40px;
-      text-align: center;
-      margin-bottom: 20px;
-    }
-  </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экранная клавиатура</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+        .key {
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .key:active {
+            background-color: #45a049;
+        }
+        .key.shift {
+            background-color: #f44336;
+        }
+        .key.shift:active {
+            background-color: #e53935;
+        }
+        .key-space {
+            grid-column: span 2;
+        }
+    </style>
 </head>
 <body>
-<input type="text" id="inputField" readonly>
-<div id="keyboard"></div>
+
+<div class="container">
+    <input type="text" id="inputField" readonly>
+    <div class="keyboard">
+        <!-- Кнопки для букв -->
+        <button class="key" data-key="q">q</button>
+        <button class="key" data-key="w">w</button>
+        <button class="key" data-key="e">e</button>
+        <button class="key" data-key="r">r</button>
+        <button class="key" data-key="t">t</button>
+        <button class="key" data-key="y">y</button>
+        <button class="key" data-key="u">u</button>
+        <button class="key" data-key="i">i</button>
+        <button class="key" data-key="o">o</button>
+        <button class="key" data-key="p">p</button>
+
+        <!-- Кнопки для символов -->
+        <button class="key" data-key="a">a</button>
+        <button class="key" data-key="s">s</button>
+        <button class="key" data-key="d">d</button>
+        <button class="key" data-key="f">f</button>
+        <button class="key" data-key="g">g</button>
+        <button class="key" data-key="h">h</button>
+        <button class="key" data-key="j">j</button>
+        <button class="key" data-key="k">k</button>
+        <button class="key" data-key="l">l</button>
+
+        <!-- Shift и кнопки для остальных символов -->
+        <button class="key shift" id="shiftBtn">Shift</button>
+        <button class="key" data-key="z">z</button>
+        <button class="key" data-key="x">x</button>
+        <button class="key" data-key="c">c</button>
+        <button class="key" data-key="v">v</button>
+        <button class="key" data-key="b">b</button>
+        <button class="key" data-key="n">n</button>
+        <button class="key" data-key="m">m</button>
+
+        <!-- Пробел и кнопка "Clear" -->
+        <button class="key key-space" data-key="space">Space</button>
+        <button class="key" id="clearBtn">Clear</button>
+    </div>
+</div>
+
 <script>
-  const keys = "1234567890йцукенгшщзхъфывапролджэячсмитьбю".split("");
-  let shift = false;const keyboard = document.getElementById("keyboard");
-  const inputField = document.getElementById("inputField");
+    const inputField = document.getElementById('inputField');
+    const shiftBtn = document.getElementById('shiftBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const keys = document.querySelectorAll('.key');
 
-  function addCharacter(char) {
-    inputField.value += shift ? char.toUpperCase() : char;
-  }
+    let isShift = false;
 
-  function toggleShift() {
-    shift = !shift;
-  }
+    // Функция для добавления символа в поле ввода
+    function addCharacter(char) {
+        if (char === 'space') {
+            inputField.value += ' ';
+        } else {
+            inputField.value += char;
+        }
+    }
 
-  keys.forEach(char => {
-    const button = document.createElement("button");
-    button.innerText = char;
-    button.onclick = () => addCharacter(char);
-    keyboard.appendChild(button);
-  });
+    // Функция для обновления состояния клавиш на клавиатуре
+    function updateKeys() {
+        keys.forEach(key => {
+            const keyChar = key.dataset.key;
+            if (keyChar && keyChar.length === 1) { // Если это буква
+                if (isShift) {
+                    key.textContent = keyChar.toUpperCase();
+                } else {
+                    key.textContent = keyChar.toLowerCase();
+                }
+            }
+        });
+    }
 
-  const shiftButton = document.createElement("button");
-  shiftButton.innerText = "Shift";
-  shiftButton.onclick = toggleShift;
-  keyboard.appendChild(shiftButton);
+    // Обработчик для кнопок клавиатуры
+    keys.forEach(key => {
+        key.addEventListener('click', function () {
+            const char = this.dataset.key;
+            if (char) {
+                if (char === 'space') {
+                    addCharacter('space');
+                } else {
+                    addCharacter(isShift ? char.toUpperCase() : char);
+                }
+            }
+        });
+    });
+
+    // Обработчик для кнопки Shift
+    shiftBtn.addEventListener('click', function () {
+        isShift = !isShift;
+        shiftBtn.style.backgroundColor = isShift ? '#e53935' : '#f44336';
+        updateKeys(); // Обновляем регистр букв на клавишах
+    });
+
+    // Обработчик для кнопки Clear
+    clearBtn.addEventListener('click', function () {
+        inputField.value = '';
+    });
 </script>
+
 </body>
 </html>
