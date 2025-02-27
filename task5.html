@@ -2,87 +2,105 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 5</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-        .container {
-            width: 90%;
-            max-width: 1400px;
-            display: grid;
-            grid-template-areas:
-                "header"
-                "content"
-                "sidebar"
-                "footer";
-            gap: 20px;
-        }
-        header, .content, .sidebar, footer {
-            padding: 20px;
-            background: #f4f4f4;
-        }
+
         header {
-            grid-area: header;
+            width: 100%;
+            background-color: gray;
             text-align: center;
+            align-items: center;
         }
-        .content {
-            grid-area: content;
+
+        .container {
             display: flex;
             flex-wrap: wrap;
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px;
             gap: 20px;
-            justify-content: center;
         }
+
+        main {
+            display: flex;
+            grid-gap: 20px;
+            flex: 1;
+        }
+
         .post {
-            width: 200px;
-            background: white;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            background-color: lightgray;
+            padding: 20px;
         }
+
         .sidebar {
-            grid-area: sidebar;
+            background-color: lightgray;
+            padding: 20px;
         }
+
         footer {
-            grid-area: footer;
+            width: 100%;
+            background-color: gray;
             text-align: center;
+            align-items: center;
         }
-        @media (min-width: 768px) {
+
+        @media (max-width) {
             .container {
-                grid-template-areas:
-                    "header header"
-                    "content sidebar"
-                    "footer footer";
-                grid-template-columns: 2fr 1fr;
+                flex-direction: column;
             }
         }
-        @media (min-width: 992px) {
+
+        @media (max-width: 991px) {
+            main {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
             .container {
-                grid-template-areas:
-                    "header header header"
-                    "content content sidebar"
-                    "footer footer footer";
-                grid-template-columns: 2fr 2fr 1fr;
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            main {
+                grid-template-columns: repeat3, 1fr();
+            }
+
+            .sidebar {
+                width: 300px;
             }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <header>Шапка</header>
-    <section class="content">
-        <div class="post">Пост 1</div>
-        <div class="post">Пост 2</div>
-        <div class="post">Пост 3</div>
-        <div class="post">Пост 4</div>
-    </section>
-    <aside class="sidebar">Боковая панель</aside>
-    <footer>Футер</footer>
-</div>
+    <header>
+        <h1>Шапка</h1>
+    </header>
+
+    <div class="container">
+        <main>
+            <article class="post">Пост 1</article>
+            <article class="post">Пост 2</article>
+            <article class="post">Пост 3</article>
+            <article class="post">Пост 4</article>
+            <article class="post">Пост 5</article>
+            <article class="post">Пост 5</article>
+        </main>
+
+        <aside class="sidebar">
+            <h2>Боковая панель</h2>
+            <p>Содержимое сайдбара...</p>
+        </aside>
+    </div>
+
+    <footer>
+        <p>Футер</p>
+    </footer>
 </body>
 </html>
